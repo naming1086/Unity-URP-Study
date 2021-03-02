@@ -57,13 +57,13 @@
             #pragma vertex vert
             #pragma fragment frag
 
-            struct Attributes//这就是a2v
+            struct a2v//这就是a2v
             {
                 float4 positionOS : POSITION;
                 float2 uv : TEXCOORD;
             };
 
-            struct Varings//这就是v2f
+            struct v2f//这就是v2f
             {
                 float4 positionCS : SV_POSITION;
                 float2 uv : TEXCOORD;
@@ -72,9 +72,9 @@
             TEXTURE2D(_BaseMap);//在CG中会写成sampler2D _MainTex;
             SAMPLER(sampler_BaseMap);
 
-            Varings vert(Attributes IN)
+            v2f vert(a2v IN)
             {
-                Varings OUT;
+                v2f OUT;
                 //在CG里面，我们这样转换空间坐标 o.vertex = UnityObjectToClipPos(v.vertex);
                 VertexPositionInputs positionInputs = GetVertexPositionInputs(IN.positionOS.xyz);
                 OUT.positionCS = positionInputs.positionCS;
@@ -83,7 +83,7 @@
                 return OUT;
             }
 
-            float4 frag(Varings IN):SV_Target
+            float4 frag(v2f IN):SV_Target
             {
                 //在CG里，我们这样对贴图采样 fixed4 col = tex2D(_MainTex, i.uv);
                 half4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv);                
