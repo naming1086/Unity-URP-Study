@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Test
-  m_Shader: {fileID: 4800000, guid: 7a94ff220e01ef047be119b0d5eddb97, type: 3}
+  m_Shader: {fileID: 4800000, guid: 500b43d99f1315f40946b8149ea62704, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -65,16 +65,17 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularRange: 10
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.6745283, b: 0.6745283, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0.6320754, g: 0.36672303, b: 0.36672303, a: 1}
+    - _SpecularColor: {r: 0.8301887, g: 0.06657174, b: 0.06657174, a: 1}
 --- !u!114 &8463999159282120090
 MonoBehaviour:
   m_ObjectHideFlags: 11

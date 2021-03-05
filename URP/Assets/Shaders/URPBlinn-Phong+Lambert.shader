@@ -48,6 +48,8 @@
 
         Pass
         {        
+            NAME"MainPass"
+
             Tags{
                 "LightMode"="UniversalForward"
             }
@@ -73,7 +75,7 @@
 
             float4 frag(v2f IN):SV_Target
             {
-                half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv)*_BaseColor; 
+                //half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv)*_BaseColor; 
 
                 Light mylight = GetMainLight();
 
@@ -83,7 +85,7 @@
                 float spe = dot(normalize(LightDirWS+IN.viewDirWS),IN.normalWS);
 
                 half4 speColor = pow(spe,_SpecularRange)*_SpecularColor;
-                half4 texColor = (dot(IN.normalWS,LightDirWS)*0.5+0.5)*mainTex;
+                half4 texColor = (dot(IN.normalWS,LightDirWS)*0.5+0.5)*SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv)*_BaseColor;
 
                 texColor*=half4(mylight.color,1);
 
