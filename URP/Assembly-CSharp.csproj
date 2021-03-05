@@ -65,7 +65,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <None Include="Assets\Shaders\URPBlinn-Phong+Lambert.shader" />
     <None Include="Assets\Shaders\URPUnlitShader.shader" />
+    <None Include="Assets\Shaders\URPLambert.shader" />
     <None Include="Assets\Unlit.shader" />
     <None Include="Assets\NewUnlitShader.shader" />
     <None Include="Assets\URPSimpleLit.shader" />

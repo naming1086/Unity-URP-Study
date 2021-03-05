@@ -40,8 +40,6 @@
 
         Pass
         {        
-            //Tags{"LightMode"="UniversalForward"}
-
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
