@@ -25,7 +25,9 @@
         float4 _AlphaTex_ST;
         CBUFFER_END
 
+        //声明纹理
         TEXTURE2D(_MainTex);
+        //声明采样器
         SAMPLER(sampler_MainTex);
         TEXTURE2D(_AlphaTex);
         SAMPLER(sampler_AlphaTex);
@@ -62,6 +64,7 @@
             {
                 v2f o;
                 o.positionCS=TransformObjectToHClip(i.positionOS.xyz);
+                //对纹理坐标进行偏移和缩放
                 o.texcoord.xy=TRANSFORM_TEX(i.texcoord,_MainTex);
                 o.texcoord.zw=TRANSFORM_TEX(i.texcoord,_AlphaTex);
                 return o;
@@ -69,6 +72,7 @@
 
             half4 frag (v2f i) : SV_Target
             {
+                //对纹理进行采样，传入参数（纹理，纹理采样器，纹理坐标）
                 half4 tex = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord.xy)*_BaseColor;
                 float alpha = SAMPLE_TEXTURE2D(_AlphaTex,sampler_AlphaTex,i.texcoord.zw).x;
                 return half4(tex.xyz,alpha);
