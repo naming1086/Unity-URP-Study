@@ -1,11 +1,10 @@
-﻿Shader "URP/URPUnlitShader"
+﻿Shader "URP/URPShadowCaster"
 {
     Properties
     {
         _MainTex ("Base Texture", 2D) = "white" {}
         _BaseColor("Base Color",Color)=(1,1,1,1)
         _Gloss("Gloss",Range(10,300))=50
-        _SpecularColor("Specular Color",Color)=(1,1,1,1)
         [KeywordEnum(ON,OFF)]_CUT("CUT",float)=1
         _Cutoff("Cutoff",Range(0,1))=1
         [KeywordEnum(ON,OFF)]_ADD_LIGHT("AddLight",float)=1
@@ -22,12 +21,14 @@
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 
+        #pragma shader_feature_local _CUT_ON
+        #pragma shader_feature_local _ADD_LIGHT_ON
+
         CBUFFER_START(UnityPerMaterial)
         float4 _MainTex_ST;//ST = Sampler Texture 采样器纹理
         half4 _BaseColor;
         float _Cutoff;
         float _Gloss;
-        half4 _SpecularColor;
         CBUFFER_END
 
         TEXTURE2D(_MainTex);
@@ -92,11 +93,11 @@
                 return o;
             }
 
-            float4 frag(v2f i):SV_Target
+            half4 frag(v2f i):SV_Target
             {
                 half4 mainTex = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord)*_BaseColor;
                 #ifdef _CUT_ON
-                clip(tex.a - _Cutoff);
+                clip(mainTex.a - _Cutoff);
                 #endif
                 float3 NormalWS = i.WS_N;
                 float3 PositionWS = i.WS_P;
@@ -127,7 +128,7 @@
             }
             ENDHLSL  //ENDCG
         }
-
+        //UsePass "Universal Render Pipeline/Lit/ShadowCaster"
         Pass
         {
             //该pass只把主灯光空间的深度图写到了shadowmap里  addlight灯光空间目前没有写进去 导致模型无法投射addlight的阴影 但是整shader可以接受addlight的阴影
@@ -139,6 +140,8 @@
             HLSLPROGRAM
             #pragma vertex vertshadow
             #pragma fragment fragshadow
+
+            half3 _LightDirection;
             v2f vertshadow(a2v i)
             {
                 v2f o;
@@ -147,7 +150,7 @@
                 Light mainLight = GetMainLight();
                 float3 WS_Normal = TransformObjectToWorldNormal(i.normalOS.xyz);
 
-                o.positionCS = TransformObjectToHClip(ApplyShadowBias(WS_Pos,WS_Normal,mainLight.direction));
+                o.positionCS = TransformObjectToHClip(ApplyShadowBias(WS_Pos,WS_Normal,_LightDirection));
                 #if UNITY_REVERSED_Z
                 o.positionCS.z = min(o.positionCS.z,o.positionCS.w*UNITY_NEAR_CLIP_VALUE);
                 #else
@@ -164,8 +167,7 @@
                 #endif
                 return 0;
             }
-            ENDHLSL
-        
+            ENDHLSL       
 		}
     }
 }
