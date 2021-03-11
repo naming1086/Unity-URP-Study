@@ -83,7 +83,7 @@
 
                 o.WS_P = TransformObjectToWorld(i.positionOS.xyz);
 
-                #ifdef _MAIN_LIGHT_SHADOWS
+                #ifdef _MAIN_LIGHT_SHADOWS//关键字判断，如果没有定义，则不执行
                 o.shadowcoord = TransformWorldToShadowCoord(o.WS_P);
                 #endif
 
@@ -149,8 +149,10 @@
                 float3 WS_Pos = TransformObjectToWorld(i.positionOS.xyz);
                 Light mainLight = GetMainLight();
                 float3 WS_Normal = TransformObjectToWorldNormal(i.normalOS.xyz);
-
+                //ApplyShadowBias(世界坐标，模型的世界法线，灯光方向) 获取特殊的裁剪空间的坐标
                 o.positionCS = TransformObjectToHClip(ApplyShadowBias(WS_Pos,WS_Normal,_LightDirection));
+                //根据是否进行了Z反向（比如unity编辑器下是DX11，是有Z反向的），来取z值和w值*近裁剪面两者之间取最小值；
+                //若未Z反向则取最大值。这样得到的Z值再传递给GPU流水线下一个工位。
                 #if UNITY_REVERSED_Z
                 o.positionCS.z = min(o.positionCS.z,o.positionCS.w*UNITY_NEAR_CLIP_VALUE);
                 #else

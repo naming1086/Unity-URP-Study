@@ -24,13 +24,13 @@
         struct a2v//这就是a2v 应用阶段传递模型给顶点着色器的数据
         {
             float4 positionOS : POSITION;
-            float2 uv : TEXCOORD;
+            float2 texcoord : TEXCOORD;
         };
 
         struct v2f//这就是v2f 顶点着色器传递给片元着色器的数据
         {
-            float4 positionCS : SV_POSITION;
-            float2 uv : TEXCOORD;
+            float4 positionCS : SV_POSITION;//必须
+            float2 texcoord : TEXCOORD;
         };
 
         TEXTURE2D(_MainTex);
@@ -44,17 +44,17 @@
             #pragma vertex vert
             #pragma fragment frag
 
-            v2f vert(a2v IN)
+            v2f vert(a2v i)
             {
-                v2f OUT;
-                OUT.positionCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.uv=TRANSFORM_TEX(IN.uv,_MainTex);
-                return OUT;
+                v2f o;
+                o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
+                o.texcoord=TRANSFORM_TEX(i.texcoord,_MainTex);
+                return o;
             }
 
-            float4 frag(v2f IN):SV_Target
+            float4 frag(v2f i):SV_Target
             {
-                half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);                
+                half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);                
                 return mainTex * _BaseColor;
             }
             ENDHLSL  //ENDCG
