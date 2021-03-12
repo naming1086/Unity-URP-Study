@@ -63,7 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\MyBilt.cs" />
+    <Compile Include="Assets\Test.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <None Include="Assets\Shaders\URPBlinn-Phong+Lambert.shader" />
     <None Include="Assets\Shaders\URPDepth.shader" />
@@ -78,6 +79,7 @@
     <None Include="Assets\Shaders\URPLambert.shader" />
     <None Include="Assets\Unlit.shader" />
     <None Include="Assets\Shaders\URPMultiLight.shader" />
+    <None Include="Assets\Shaders\URPPost.shader" />
     <None Include="Assets\NewUnlitShader.shader" />
     <None Include="Assets\Shaders\URPAlphaTest.shader" />
     <None Include="Assets\URPSimpleLit.shader" />
