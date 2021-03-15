@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6456913664122041041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b46ef1ca9f16fa44a1d35e2fe6b65a9, type: 3}
+  m_Name: NewMyBilt
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: f07cfbcb591b1e44d8ad9dcd9a9c25ea, type: 2}
+    matPassIndex: -1
+--- !u!114 &-5122496484710613162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c7e01674bafe44f81c22a94498531c, type: 3}
+  m_Name: NewDoualblur
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: fe3e09333afb50645a5b88af5fcdfcad, type: 2}
+    downSample: 2
+    loop: 2
+    bulr: 0.5
+    passTag: Doualblur
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,7 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
+  m_RendererFeatures:
+  - {fileID: -6456913664122041041}
+  - {fileID: -5122496484710613162}
+  m_RendererFeatureMap: 2fcda3903b6f64a656ffa259963ce9b8
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -34,3 +74,4 @@ MonoBehaviour:
     passOperation: 0
     failOperation: 0
     zFailOperation: 0
+  m_ShadowTransparentReceive: 1

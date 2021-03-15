@@ -63,15 +63,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Doualblur.cs" />
+    <Compile Include="Assets\Scripts\KawaseBlur.cs" />
     <Compile Include="Assets\Scripts\MyBilt.cs" />
+    <Compile Include="Assets\Scripts\RadialBlur.cs" />
     <Compile Include="Assets\Test.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <None Include="Assets\Shaders\URPBlinn-Phong+Lambert.shader" />
     <None Include="Assets\Shaders\URPDepth.shader" />
     <None Include="Assets\Shaders\URPAlphaBlend.shader" />
     <None Include="Assets\Shaders\URPRamp.shader" />
+    <None Include="Assets\Shaders\URPDoualBlur.shader" />
     <None Include="Assets\Shaders\URPMultiLightAndShadow.shader" />
     <None Include="Assets\Shaders\URPShadowCaster.shader" />
+    <None Include="Assets\Shaders\URPKawaseBlur.shader" />
     <None Include="Assets\Shaders\URPMainLightShadow.shader" />
     <None Include="Assets\Shaders\URPUnlitShader.shader" />
     <None Include="Assets\Shaders\URPSequenceOfFrames.shader" />

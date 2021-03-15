@@ -1,10 +1,10 @@
-﻿Shader "URP/URPUnlitShader"
+﻿Shader "URP/URPPost"
 {
     Properties
     {
         [HideInspector]_MainTex ("MainTexture", 2D) = "white" {}
         _Brightness("Brightness",Range(0,1))=1
-        _Saturate("Saturate",Range(0,1)=1)
+        _Saturate("Saturate",Range(0,1))=1
         _Contranst("Constrat",Range(-1,2))=1
     }
     SubShader
@@ -12,31 +12,34 @@
         Tags 
         { 
             "RenderPipeline"="UniversalRenderPipeline"
-            "RenderType"="Opaque" 
         }
+        Cull Off ZWrite Off ZTest Always
 
         HLSLINCLUDE
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
         CBUFFER_START(UnityPerMaterial)
         float4 _MainTex_ST;//ST = Sampler Texture 采样器纹理
-        half4 _BaseColor;
+        float _Brightness;
+        float _Saturate;
+        float _Contranst;
         CBUFFER_END
 
-        struct a2v//这就是a2v 应用阶段传递模型给顶点着色器的数据
+        TEXTURE2D(_MainTex);
+        SAMPLER(sampler_MainTex);
+
+        struct a2v
         {
             float4 positionOS : POSITION;
             float2 texcoord : TEXCOORD;
         };
 
-        struct v2f//这就是v2f 顶点着色器传递给片元着色器的数据
+        struct v2f
         {
-            float4 positionCS : SV_POSITION;//必须
+            float4 positionCS : SV_POSITION;
             float2 texcoord : TEXCOORD;
         };
 
-        TEXTURE2D(_MainTex);
-        SAMPLER(sampler_MainTex);
 
         ENDHLSL
 
@@ -56,8 +59,14 @@
 
             float4 frag(v2f i):SV_Target
             {
-                half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);                
-                return mainTex * _BaseColor;
+                half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);       
+                
+                float gray = 0.21*mainTex.x+0.72*mainTex.y+0.72*mainTex.z;//灰度图，即计算明度
+                mainTex.xyz *= _Brightness;
+                mainTex.xyz = lerp(float3(0.5,0.5,05),mainTex.xyz,_Saturate);//饱和度
+                mainTex.xyz = lerp(float3(0.5,0.5,05),mainTex.xyz,_Contranst);//对比度
+
+                return mainTex;
             }
             ENDHLSL  //ENDCG
         }

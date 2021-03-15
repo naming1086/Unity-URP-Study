@@ -6,7 +6,9 @@ public class MyBilt : ScriptableRendererFeature
 {
     [System.Serializable]public class MySetting//定义一个设置类
     {
+        //渲染通过事件
         public RenderPassEvent passEvent = RenderPassEvent.AfterRenderingTransparents;//默认插到透明完成后
+        //后处理材质
         public Material myMat;
         public int matPassIndex = -1;
     }

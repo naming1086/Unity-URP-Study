@@ -60,8 +60,10 @@ Material:
     - _AlphaClip: 0
     - _Amount: 100
     - _Blend: 0
+    - _Brightness: 1
     - _BumpScale: 1
     - _CUT: 0
+    - _Contranst: 1
     - _Cull: 2
     - _Cutoff: 0.396
     - _DepthOffset: 0.5
@@ -78,6 +80,7 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Saturate: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
