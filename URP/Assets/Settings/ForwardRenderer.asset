@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8374118825600975939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b55d80e672d0d459fbbea04cef1dc4, type: 3}
+  m_Name: NewRadialBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passName: "\u5F84\u5411\u6A21\u7CCA"
+    myMat: {fileID: 2100000, guid: 8ea1268d4e9f57b4d8d614837629fec9, type: 2}
+    passEvent: 500
+    x: 0.5
+    y: 0.5
+    loop: 5
+    blur: 3
+    downSample: 2
+    instensity: 0.5
 --- !u!114 &-6456913664122041041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c7e01674bafe44f81c22a94498531c, type: 3}
   m_Name: NewDoualblur
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     passEvent: 500
     myMat: {fileID: 2100000, guid: fe3e09333afb50645a5b88af5fcdfcad, type: 2}
@@ -51,8 +74,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: -6456913664122041041}
+  - {fileID: 778863002904705320}
   - {fileID: -5122496484710613162}
-  m_RendererFeatureMap: 2fcda3903b6f64a656ffa259963ce9b8
+  - {fileID: -8374118825600975939}
+  - {fileID: 7155253822818260311}
+  m_RendererFeatureMap: 2fcda3903b6f64a62839d448c613cf0a56ffa259963ce9b8bd7b24cd4b27c98b5795d61271914c63
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -75,3 +101,46 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
+--- !u!114 &778863002904705320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d17e27129390e46b2c77500787c923, type: 3}
+  m_Name: NewKawaseBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 98ef7ed06fc11ec43bc842947e442692, type: 2}
+    downSample: 2
+    loop: 2
+    bulr: 0.5
+    passTag: "Kawase\u6A21\u7CCA"
+--- !u!114 &7155253822818260311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fed6bc1507abd489c64a1cdc860b74, type: 3}
+  m_Name: NewBokehBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    name: "\u6563\u666F\u6A21\u7CCA"
+    myMat: {fileID: 2100000, guid: 1d8d7bca49d12fa4798f9613caedf295, type: 2}
+    passEvent: 500
+    downSample: 2
+    loop: 50
+    Radius: 1
+    BlurSmoothness: 0.1
+    NearDis: 5
+    FarDis: 9

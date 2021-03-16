@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test03
+  m_Name: KawaseBlur
   m_Shader: {fileID: 4800000, guid: 44555b02b10810146bb2107c9f96950d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

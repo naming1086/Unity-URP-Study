@@ -1,4 +1,4 @@
-﻿Shader "URP/URPDoualBlur"
+﻿Shader "URP/Post/URPDoualBlur"
 {
     Properties
     {

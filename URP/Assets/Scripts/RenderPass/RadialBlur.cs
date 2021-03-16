@@ -2,22 +2,23 @@
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+[ExecuteInEditMode]
 public class RadialBlur : ScriptableRendererFeature
 {
     [System.Serializable] public class MySetting//定义一个设置类
     {
         public string passName = "径向模糊";
-        public Material myMat;
+        public Material myMat = null;
         public RenderPassEvent passEvent = RenderPassEvent.AfterRenderingTransparents;//默认插到透明完成后
 
-        [Range(0, 1)] public float x = 0.5f;
-        [Range(0, 1)] public float y = 0.5f;
+        [Range(0, 1)] public float x = 0.5f;//径向模糊的中心水平位置
+        [Range(0, 1)] public float y = 0.5f;//径向模糊的竖直方向位置
 
-        [Range(1, 8)] public int loop = 5;
-        [Range(1, 8)] public float blur = 3;
+        [Range(1, 8)] public int loop = 5;//迭代次数
+        [Range(1, 8)] public float blur = 3;//模糊采样的距离
 
-        [Range(1, 5)] public int downSample = 2;
-        [Range(0, 1)] public float instensity = 0.5f;
+        [Range(1, 5)] public int downSample = 2;//降采样的程度
+        [Range(0, 1)] public float instensity = 0.5f;//模糊强度，0为不模糊，1为全模糊，用于过渡调整
     }
 
     public MySetting setting = new MySetting();
@@ -70,29 +71,46 @@ public class RadialBlur : ScriptableRendererFeature
             cmd.SetGlobalFloat(YID, y);
             cmd.SetGlobalFloat(BlurID, blur);
             cmd.SetGlobalFloat(InstensityID, instensity);
-            cmd.Blit(PassSource, Temp1);//存储降采样的源图，用于pass0
-            cmd.Blit(PassSource, Temp2);
+            cmd.Blit(PassSource, Temp1);//存储降采样的源图，用于pass0计算
+            cmd.Blit(PassSource, Temp2);//存储源图，用于计算pass1的混合
+            cmd.Blit(Temp1, BlurTex, passMat, 0);//pass0的模糊计算
+            cmd.Blit(BlurTex, PassSource, passMat, 1);//pass1的混合
+            context.ExecuteCommandBuffer(cmd);
+            cmd.ReleaseTemporaryRT(BlurTexID);
+            cmd.ReleaseTemporaryRT(TempID1);
+            cmd.ReleaseTemporaryRT(TempID2);
+            CommandBufferPool.Release(cmd);
         }
     }
 
-    CustomRenderPass myPass;
+    CustomRenderPass m_ScriptablePass;
 
     public override void Create()//进行初始化
     {
-        myPass = new CustomRenderPass(setting.passName);//实例化一下并传参数name就是tag
-        myPass.renderPassEvent = setting.passEvent;
-        myPass.passBulr = setting.bulr;
-        myPass.passLoop = setting.loop;
-        myPass.passMat = setting.myMat;
-        myPass.passDownSample = setting.downSample;
+        m_ScriptablePass = new CustomRenderPass();
+        m_ScriptablePass.renderPassEvent = setting.passEvent;
+        m_ScriptablePass.blur = setting.blur;
+        m_ScriptablePass.x = setting.x;
+        m_ScriptablePass.y = setting.y;
+        m_ScriptablePass.instensity = setting.instensity;
+        m_ScriptablePass.loop = setting.loop;
+        m_ScriptablePass.passMat = setting.myMat;
+        m_ScriptablePass.name = setting.passName;
+        m_ScriptablePass.downSample = setting.downSample;
     }
 
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        var src = renderer.cameraColorTarget;
-        myPass.SetUp(src);
-        renderer.EnqueuePass(myPass);
+        if(setting.myMat != null) 
+        {
+            m_ScriptablePass.SetUp(renderer.cameraColorTarget);
+            renderer.EnqueuePass(m_ScriptablePass);
+        }
+        else 
+        {
+            Debug.LogError("径向模糊材质球丢失");
+        }
     }
 }
 

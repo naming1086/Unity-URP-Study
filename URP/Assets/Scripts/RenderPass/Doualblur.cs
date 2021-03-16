@@ -11,7 +11,7 @@ public class Doualblur : ScriptableRendererFeature
         [Range(1, 8)] public int downSample = 2;
         [Range(2, 8)] public int loop = 2;
         [Range(0.5f, 5)] public float bulr = 0.5f;
-        public string passTag = "Doualblur";
+        public string passTag = "双重模糊";
     }
 
     public MySetting setting = new MySetting();

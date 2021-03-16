@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6320365200421201250
+--- !u!114 &-2887618307868685978
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test04
-  m_Shader: {fileID: 4800000, guid: d1bb3b024920735438ec3348863e45b2, type: 3}
+  m_Name: Post
+  m_Shader: {fileID: 4800000, guid: 0b8c3a2fc6f22214db8c7bce014e8b77, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -63,7 +63,9 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
+    - _Brightness: 1
     - _BumpScale: 1
+    - _Contranst: 0.85
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
@@ -75,6 +77,7 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Saturate: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

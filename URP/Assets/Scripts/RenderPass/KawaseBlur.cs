@@ -11,7 +11,7 @@ public class KawaseBlur : ScriptableRendererFeature
         [Range(2, 10)] public int downSample = 2;
         [Range(2, 10)] public int loop = 2;
         [Range(0.5f, 5)] public float bulr = 0.5f;
-        public string passTag = "KawaseBlur";
+        public string passTag = "Kawase模糊";
     }
 
     public MySetting setting = new MySetting();

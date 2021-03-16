@@ -1,4 +1,4 @@
-﻿Shader "URP/URPPost"
+﻿Shader "URP/Post/URPPost"
 {
     Properties
     {

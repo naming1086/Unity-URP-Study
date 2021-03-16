@@ -68,7 +68,7 @@
                 o.texcoord=TRANSFORM_TEX(i.texcoord,_MainTex);
 
                 o.positionWS = TransformObjectToWorld(i.positionOS.xyz);
-                o.normalWS = TransformObjectToWorldNormal(i.normalOS);
+                o.normalWS = TransformObjectToWorldNormal(i.normalOS.xyz);
 
                 return o;
             }

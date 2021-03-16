@@ -1,4 +1,4 @@
-﻿Shader "URP/URPKawaseBlur"
+﻿Shader "URP/Post/URPKawaseBlur"
 {
     Properties
     {
