@@ -53,6 +53,7 @@ public class BokehBlur : ScriptableRendererFeature
             RenderTextureDescriptor desc = renderingData.cameraData.cameraTargetDescriptor;
             width = desc.width / downSample;
             height = desc.height / downSample;
+            cmd.GetTemporaryRT(BlurID, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
             cmd.GetTemporaryRT(SourceBakedID, desc);
             cmd.CopyTexture(PassSource, SourceBakedID);//把相机图像复制到备份RT图，并自动发送到shader里，无需手动指定发送
             cmd.Blit(PassSource, BlurID, passMat, 0);//第一个pass，把屏幕图像计算后存到一个降采样的模糊图里
@@ -70,11 +71,11 @@ public class BokehBlur : ScriptableRendererFeature
     public override void Create()//进行初始化
     {
         m_ScriptablePass = new CustomRenderPass();
-        m_ScriptablePass.renderPassEvent = setting.passEvent;
+        m_ScriptablePass.passMat = setting.myMat;
+        m_ScriptablePass.loop = setting.loop;
         m_ScriptablePass.BlurSmoothness = setting.BlurSmoothness;
         m_ScriptablePass.Radius = setting.Radius;
-        m_ScriptablePass.loop = setting.loop;
-        m_ScriptablePass.passMat = setting.myMat;
+        m_ScriptablePass.renderPassEvent = setting.passEvent;
         m_ScriptablePass.name = setting.name;
         m_ScriptablePass.downSample = setting.downSample;
         m_ScriptablePass.NearDis = Mathf.Max(setting.NearDis, 0);
