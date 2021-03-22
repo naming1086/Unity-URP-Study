@@ -78,7 +78,9 @@ MonoBehaviour:
   - {fileID: -5122496484710613162}
   - {fileID: -8374118825600975939}
   - {fileID: 7155253822818260311}
-  m_RendererFeatureMap: 2fcda3903b6f64a62839d448c613cf0a56ffa259963ce9b8bd7b24cd4b27c98b5795d61271914c63
+  - {fileID: 3095398280859138308}
+  - {fileID: 3877388931981664903}
+  m_RendererFeatureMap: 2fcda3903b6f64a62839d448c613cf0a56ffa259963ce9b8bd7b24cd4b27c98b5795d61271914c6304b9f6185610f52a8762ccbab040cf35
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -121,6 +123,50 @@ MonoBehaviour:
     loop: 2
     bulr: 0.5
     passTag: "Kawase\u6A21\u7CCA"
+--- !u!114 &3095398280859138308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ac0cdd70ddac040aa7e5133169f9b1, type: 3}
+  m_Name: NewScan
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: 65f31c549b848424293a44fcd4bde387, type: 2}
+    Event: 500
+--- !u!114 &3877388931981664903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890ef212e46654243a283a6800c64d4a, type: 3}
+  m_Name: NewScanPlus
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    material: {fileID: 2100000, guid: e024eee820d6c02409cb777f388f9428, type: 2}
+    Event: 500
+    ColorX: {r: 4, g: 0, b: 0, a: 1}
+    ColorY: {r: 0.47058824, g: 4, b: 0, a: 1}
+    ColorZ: {r: 0, g: 2.0705884, b: 4, a: 1}
+    ColorEdge: {r: 0.9069853, g: 0, b: 1, a: 1}
+    ColorOutline: {r: 1, g: 1, b: 1, a: 1}
+    Width: 0.1
+    Spacing: 1
+    Speed: 1
+    EdgeSample: 1
+    NormalSensitivity: 1
+    DepthSensitivity: 1
+    axis: 0
 --- !u!114 &7155253822818260311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fed6bc1507abd489c64a1cdc860b74, type: 3}
   m_Name: NewBokehBlur
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     name: "\u6563\u666F\u6A21\u7CCA"
     myMat: {fileID: 2100000, guid: 1d8d7bca49d12fa4798f9613caedf295, type: 2}

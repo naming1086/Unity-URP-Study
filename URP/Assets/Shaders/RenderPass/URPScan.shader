@@ -68,13 +68,13 @@
 
                 int t = 0;
                 if(i.texcoord.x<0.5&&i.texcoord.y<0.5)
-                    t = 0;
+                t = 0;
                 else if(i.texcoord.x>0.5&&i.texcoord.y<0.5)
-                    t = 1;
+                t = 1;
                 else if(i.texcoord.x>0.5&&i.texcoord.y>0.5)
-                    t = 2;
+                t = 2;
                 else
-                    t = 3;
+                t = 3;
 
                 o.dirction = Matrix[t].xyz;
 
@@ -84,43 +84,14 @@
             float4 frag(v2f i):SV_Target
             {
                 float4 mainTex = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord);
-                half depth = Linear01Depth(SAMPLE_TEXTURE2D(_CameraDepthTexture,sampler_CameraDepthTexture,i.texcoord).x,_ZBufferParams).x;
+                half depth = LinearEyeDepth(SAMPLE_TEXTURE2D(_CameraDepthTexture,sampler_CameraDepthTexture,i.texcoord).x,_ZBufferParams).x;
 
                 float3 WSPos = _WorldSpaceCameraPos + depth*i.dirction+float3(0.1,0.1,0.1);//得到世界坐标
-                return 
-            }
-
-            ENDHLSL
-        }
-
-        Pass
-        {
-            HLSLPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-
-            v2f vert(a2v i)
-            {
-                v2f o;
-                o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
-                o.texcoord = i.texcoord;
-
-                return o;
-            }
-
-            float4 frag(v2f i):SV_Target
-            {
-                float depth = Linear01Depth(tex2D(_CameraDepthTexture,i.texcoord).x,_ZBufferParams).x;
-                float4 blur = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord);
-                float4 sour = SAMPLE_TEXTURE2D(_SourceTex,sampler_SourceTex,i.texcoord);
-                _NearDis *= _ProjectionParams.w;
-                _FarDis *= _ProjectionParams.w;
-                float dis = 1 - smoothstep(_NearDis,saturate(_NearDis+_BlurSmoothness),depth);//计算近处
-                dis += smoothstep(_FarDis,saturate(_FarDis+_BlurSmoothness),depth);//计算远处
-                
-                float4 combine = lerp(sour,blur,dis);
-
-                return combine;
+                //return float4(frac(WSPos/_Spacing),1);
+                float3 Line = step(1-_Width,frac(WSPos/_Spacing));//线框
+                //return float4(Line,1);
+                float4 LineColor = Line.x*_ColorX + Line.y*_ColorY + Line.z*_ColorZ;
+                return LineColor + mainTex;
             }
 
             ENDHLSL
