@@ -8,19 +8,20 @@ public class DepthNormalsFeature : ScriptableRendererFeature
 {
     class DepthNormalPass : ScriptableRenderPass//自定义pass
     {
-        public Material material = null;
-        public RenderTargetHandle targetHandle { get; set; }
+        public RenderTargetHandle destination { get; set; }
+
+        public Material depthNormalsMaterial  = null;
         private FilteringSettings m_FilteringSettings;
         ShaderTagId m_ShaderTagId = new ShaderTagId("DepthOnly");
         public DepthNormalPass(RenderQueueRange renderQueueRange,LayerMask layerMask, Material material)
         {
             m_FilteringSettings = new FilteringSettings(renderQueueRange,layerMask);
-            this.material = material;
+            this.depthNormalsMaterial  = material;
         }
 
-        public void SetUp(RenderTargetHandle targetHandle) //接收render feather传的图
+        public void SetUp(RenderTargetHandle destination) //接收render feather传的图
         {
-            this.targetHandle = targetHandle;
+            this.destination  = destination;
         }
 
         //在执行渲染过程之前调用此方法
@@ -33,15 +34,15 @@ public class DepthNormalsFeature : ScriptableRendererFeature
             descriptor.depthBufferBits = 32;
             descriptor.colorFormat = RenderTextureFormat.ARGB32;
 
-            cmd.GetTemporaryRT(targetHandle.id, descriptor, FilterMode.Point);
-            ConfigureTarget(targetHandle.Identifier());
+            cmd.GetTemporaryRT(destination .id, descriptor, FilterMode.Point);
+            ConfigureTarget(destination .Identifier());
             ConfigureClear(ClearFlag.All, Color.black);
         }
 
         //这里实现渲染逻辑
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
-            CommandBuffer cmd = CommandBufferPool.Get("深度法线获取Pass");
+            CommandBuffer cmd = CommandBufferPool.Get("DepthNormals Prepass");
             using (new ProfilingScope(cmd,new ProfilingSampler("DepthNormals Prepass")))
             {
                 context.ExecuteCommandBuffer(cmd);
@@ -49,42 +50,57 @@ public class DepthNormalsFeature : ScriptableRendererFeature
 
                 var sortFlags = renderingData.cameraData.defaultOpaqueSortFlags;
                 var drawSetting = CreateDrawingSettings(m_ShaderTagId, ref renderingData, sortFlags);
+
                 drawSetting.perObjectData = PerObjectData.None;
 
                 ref CameraData cameraData = ref renderingData.cameraData;
-                Camera t_Camera = cameraData.camera;
+                Camera camera = cameraData.camera;
                 if (cameraData.isStereoEnabled)
                 {
-                    context.StartMultiEye(t_Camera);
+                    context.StartMultiEye(camera);
                 }
-                drawSetting.overrideMaterial = material;
+
+                drawSetting.overrideMaterial = depthNormalsMaterial ;
+
                 context.DrawRenderers(renderingData.cullResults, ref drawSetting, ref m_FilteringSettings);
 
-                cmd.SetGlobalTexture("_CameraDepthNormalsTexture", targetHandle.id);
+                cmd.SetGlobalTexture("_CameraDepthNormalsTexture", destination .id);
             }
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
         }
+
+        //清除在执行此渲染过程期间创建的所有已分配资源
+        public override void FrameCleanup(CommandBuffer cmd)
+        {
+            if(destination  != RenderTargetHandle.CameraTarget)
+            {
+                cmd.ReleaseTemporaryRT(destination .id);
+                destination  = RenderTargetHandle.CameraTarget;
+            }
+        }
     }
 
-    DepthNormalPass m_DepthNormalPass;
-    RenderTargetHandle m_DepthNormalsTexture;
-    Material m_DepthNormalMaterial;
+
+
+    DepthNormalPass depthNormalsPass;
+    RenderTargetHandle depthNormalsTexture;
+    Material depthNormalsMaterial;
 
     public override void Create()//进行初始化
     {
-        m_DepthNormalMaterial = CoreUtils.CreateEngineMaterial("Hidden/InternalDepthNormalsTexture");
-        m_DepthNormalPass = new DepthNormalPass(RenderQueueRange.opaque, -1,m_DepthNormalMaterial);
-        m_DepthNormalPass.renderPassEvent = RenderPassEvent.AfterRenderingPrePasses;
-        m_DepthNormalsTexture.Init("_CameraDepthNormalTexture");
+        depthNormalsMaterial = CoreUtils.CreateEngineMaterial("Hidden/Internal-DepthNormalsTexture");
+        depthNormalsPass = new DepthNormalPass(RenderQueueRange.opaque, -1,depthNormalsMaterial);
+        depthNormalsPass.renderPassEvent = RenderPassEvent.AfterRenderingPrePasses;
+        depthNormalsTexture.Init("_CameraDepthNormalTexture");
     }
 
     //在这里，你可以在渲染器中注入一个或多个渲染过程。
     //每个摄像头设置一次渲染器，将调用此方法
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        m_DepthNormalPass.SetUp(m_DepthNormalsTexture);
-        renderer.EnqueuePass(m_DepthNormalPass);
+        depthNormalsPass.SetUp(depthNormalsTexture);
+        renderer.EnqueuePass(depthNormalsPass);
 
     }
 }

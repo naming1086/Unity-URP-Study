@@ -8,13 +8,13 @@
        [HideInInspector][HDR]_ColorZ("ColorZ",Color)=(1,1,1,1)
        [HideInInspector][HDR]_ColorEdge("ColorEdge",Color)=(1,1,1,1)
        [HideInInspector]_OutLineColor("OutLineColor",Color)=(1,1,1,1)
-       [HideInInspector]_Width("Width",float)=0.02
+       [HideInInspector]_Width("Width",float)=0.1
        [HideInInspector]_Spacing("Spacing",float)=1
        [HideInInspector]_Speed("Speed",float)=1
        [HideInInspector]_EdgeSample("EdgeSample",Range(0,1))=1
        [HideInInspector]_NormalSensitivity("NormalSensitivity",float)=1
        [HideInInspector]_DepthSensitivity("NormalSensitivity",float)=1
-       [KeywordEnum(X,Y,Z)]_AXIS("Axis",float) = 1
+       //[KeywordEnum(X,Y,Z)]_AXIS("Axis",float) = 1
 
     }
     SubShader
@@ -32,11 +32,11 @@
         float4 _MainTex_ST;
         CBUFFER_END
 
-        half4 _ColorX;
-        half4 _ColorY;
-        half4 _ColorZ;
-        half4 _ColorEdge;
-        half4 _OutLineColor;
+        float4 _ColorX;
+        float4 _ColorY;
+        float4 _ColorZ;
+        float4 _ColorEdge;
+        float4 _OutLineColor;
         float _Width;
         float _Spacing;
         float _Speed;
@@ -111,13 +111,13 @@
 
                 #ifdef _AXIS_X
                 float mask = saturate(pow(abs(frac(WSPos01.x + _Time.y*0.1*_Speed)-0.75),10)*30);//在X轴方向计算mask
-                mask += step(0.9999,mask);
+                mask += step(0.999,mask);
                 #elif _AXIS_Y
                 float mask = saturate(pow(abs(frac(WSPos01.y + _Time.y*0.1*_Speed)-0.25),10)*30);//在Y轴方向计算mask
-                mask += step(0.9999,mask);
+                mask += step(0.999,mask);
                 #elif _AXIS_Z
-                float mask = saturate(pow(abs(frac(WSPos01.z + _Time.y*0.1*_Speed)-0.75),10)*30);//在Y轴方向计算mask
-                mask += step(0.9999,mask);
+                float mask = saturate(pow(abs(frac(WSPos01.z + _Time.y*0.1*_Speed)-0.75),10)*30);//在Z轴方向计算mask
+                mask += step(0.999,mask);
                 #endif
                 //返回掩码
                 return mainTex*saturate(1-mask)+(LineColor+_ColorEdge)*mask;
@@ -142,7 +142,7 @@
                 //深度检测
                 int Dep = abs(depth[0]-depth[3])*abs(depth[1]-depth[2])*_DepthSensitivity>0.01?1:0;
                 //正常检测
-                float2 nor = abs(normal[0]-normal[3]*abs(normal[1]-normal[2]))*_NormalSensitivity>0.01?1:0;
+                float2 nor = abs(normal[0]-normal[3]*abs(normal[1]-normal[2]))*_NormalSensitivity;
                 int Nor = (nor.x+nor.y)>0.01?1:0;
                 return saturate(Dep + Nor);
             }

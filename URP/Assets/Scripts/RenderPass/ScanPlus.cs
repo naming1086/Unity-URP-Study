@@ -42,9 +42,9 @@ public class ScanPlus : ScriptableRendererFeature
         public Color ColorZ = Color.white;
         public Color ColorEdge = Color.white;
         public Color ColorOutline = Color.white;
-        public float Width = 0.1f;
-        public float Spacing = 1;
-        public float Speed = 1;
+        public float Width = 0.05f;
+        public float Spacing = 2;
+        public float Speed = 0.7f;
         public float EdgeSample = 1;
         public float NormalSensitivity = 1;
         public float DepthSensitivity = 1;
