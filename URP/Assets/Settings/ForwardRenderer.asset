@@ -53,6 +53,23 @@ MonoBehaviour:
     passEvent: 500
     myMat: {fileID: 2100000, guid: f07cfbcb591b1e44d8ad9dcd9a9c25ea, type: 2}
     matPassIndex: -1
+--- !u!114 &-5499032290236777780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd9eb63b8705ac45a72161e93ee1fad, type: 3}
+  m_Name: NewGlitchBlit
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: eec578f964a965942b7e44a8e22e4b47, type: 2}
+    Event: 300
+    instensity: 0.5
 --- !u!114 &-5122496484710613162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f41676ac830f584a8947a36313cd6ae, type: 3}
   m_Name: NewSelectOutline
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     material: {fileID: 2100000, guid: 7c1f34d9d74faae4eb0e9676e6067fc7, type: 2}
     Event: 400
@@ -98,6 +115,25 @@ MonoBehaviour:
     blur: 1
     passLoop: 3
     ColorType: 1
+--- !u!114 &-2753423394169167364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e7c9477a00dad43bd92335d038ca32, type: 3}
+  m_Name: NewRenderColorAdjust
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    CS: {fileID: 7200000, guid: 7ff760bc431a3de4bbba433767ffb7ea, type: 3}
+    saturete: 1
+    bright: 1
+    constrast: 1
+    Event: 500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +156,9 @@ MonoBehaviour:
   - {fileID: 3877388931981664903}
   - {fileID: -7645095055195392407}
   - {fileID: -4487567422162101746}
-  m_RendererFeatureMap: 2fcda3903b6f64a62839d448c613cf0a56ffa259963ce9b8bd7b24cd4b27c98b5795d61271914c6304b9f6185610f52a8762ccbab040cf3569b6fb808d2ae7950e9a69a834f5b8c1
+  - {fileID: -5499032290236777780}
+  - {fileID: -2753423394169167364}
+  m_RendererFeatureMap: 2fcda3903b6f64a62839d448c613cf0a56ffa259963ce9b8bd7b24cd4b27c98b5795d61271914c6304b9f6185610f52a8762ccbab040cf3569b6fb808d2ae7950e9a69a834f5b8c1ccba08644483afb3fce14be202e0c9d9
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -175,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ac0cdd70ddac040aa7e5133169f9b1, type: 3}
   m_Name: NewScan
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     material: {fileID: 2100000, guid: 65f31c549b848424293a44fcd4bde387, type: 2}
     Event: 500
