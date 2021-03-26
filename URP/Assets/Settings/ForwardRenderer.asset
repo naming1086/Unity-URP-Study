@@ -82,12 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c7e01674bafe44f81c22a94498531c, type: 3}
   m_Name: NewDoualblur
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   setting:
     passEvent: 500
     myMat: {fileID: 2100000, guid: fe3e09333afb50645a5b88af5fcdfcad, type: 2}
     downSample: 2
-    loop: 2
+    loop: 4
     bulr: 0.5
     passTag: Doualblur
 --- !u!114 &-4487567422162101746
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e7c9477a00dad43bd92335d038ca32, type: 3}
   m_Name: NewRenderColorAdjust
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     CS: {fileID: 7200000, guid: 7ff760bc431a3de4bbba433767ffb7ea, type: 3}
     saturete: 1

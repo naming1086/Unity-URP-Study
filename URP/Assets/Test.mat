@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Test
-  m_Shader: {fileID: 4800000, guid: 4e7766f291be9dd49819ae5c424dd171, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9213faebbd0252b44bf8c95e752805c5, type: 3}
   m_ShaderKeywords: _ADD_LIGHT_ON _CUT_ON _NORMAL_STAGE_WS_N _Z_STAGE_LOCK_Z
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -36,8 +36,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 414f5c511ca57474dae1836ec0a97c5b, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Texture: {fileID: 2800000, guid: 34f556d724b1bbf4097ca6220db2c581, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 1, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -68,6 +68,7 @@ Material:
     - _Cutoff: 0.396
     - _DepthOffset: 0.5
     - _DstBlend: 0
+    - _EdgeStrechPrevent: 1
     - _EnvironmentReflections: 1
     - _FrameRate: 20
     - _Gloss: 10
@@ -80,7 +81,7 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Rotate: 0
+    - _Rotate: 0.46
     - _Saturate: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -93,7 +94,7 @@ Material:
     - _ZWrite: 1
     - _Z_STAGE: 0
     m_Colors:
-    - _BaseColor: {r: 5.235603, g: 0.57564217, b: 0, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BurnColor: {r: 2.5, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 1, b: 0.9540148, a: 1}
