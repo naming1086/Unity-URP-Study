@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f41676ac830f584a8947a36313cd6ae, type: 3}
   m_Name: NewSelectOutline
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     material: {fileID: 2100000, guid: 7c1f34d9d74faae4eb0e9676e6067fc7, type: 2}
     Event: 400
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ac0cdd70ddac040aa7e5133169f9b1, type: 3}
   m_Name: NewScan
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     material: {fileID: 2100000, guid: 65f31c549b848424293a44fcd4bde387, type: 2}
     Event: 500
