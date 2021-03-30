@@ -502,6 +502,8 @@ GameObject:
   - component: {fileID: 844048564}
   - component: {fileID: 844048563}
   - component: {fileID: 844048566}
+  - component: {fileID: 844048567}
+  - component: {fileID: 844048562}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -509,6 +511,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &844048562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844048561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef001cb87844754281e08bf95264acd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depthTextureMode: 1
 --- !u!81 &844048563
 AudioListener:
   m_ObjectHideFlags: 0
@@ -605,6 +620,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &844048567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844048561}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b84389d154465b43aeddbd0cf6dea30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalsShader: {fileID: 4800000, guid: 380378acd88467349a00f1ef12caeaae, type: 3}
 --- !u!1 &1307840910
 GameObject:
   m_ObjectHideFlags: 0

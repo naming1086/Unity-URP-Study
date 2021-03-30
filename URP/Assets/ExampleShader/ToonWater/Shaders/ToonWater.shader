@@ -68,6 +68,8 @@
         CBUFFER_END
 
         // 声明深度法线纹理，注意该名称是指定的
+        TEXTURE2D(_CameraDepthTexture);
+        SAMPLER(sampler_CameraDepthTexture);
         TEXTURE2D(_CameraDepthNormalsTexture);
         SAMPLER(sampler_CameraDepthNormalsTexture);
         // 水波噪声纹理
@@ -149,11 +151,11 @@
                 return n;
             }
 
-            inline void DecodeDepthNormal(float4 enc, out float depth, out float3 normal)
-            {
-                depth = DecodeFloatRG(enc.zw);
-                normal = DecodeNormal(enc);
-            }
+            //inline void DecodeDepthNormal(float4 enc, out float depth, out float3 normal)
+            //{
+            //    depth = DecodeFloatRG(enc.zw);
+            //    normal = DecodeNormal(enc);
+            //}
 
             //混合两种颜色使用相同的算法，我们的着色器使用混合屏幕。这通常被称为“普通混合”，类似于Photoshop等软件如何混合两个图层。
             float4 alphaBlend(float4 top, float4 bottom)
@@ -168,16 +170,16 @@
             {
                 //--1.处理深度法线纹理
                 // 采样法线深度纹理（xy/w将坐标从正交投影转换为透视投影）
-                float4 sample = SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture,sampler_CameraDepthNormalsTexture,i.screenPosition.xy / i.screenPosition.w);
-                //half4 sample = SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture,sampler_CameraDepthNormalsTexture,i.screenPosition.xy);
-	            float depth;
-                float3 normal;
-                DecodeDepthNormal(sample, depth, normal);
+                float4 sampleDepth = SAMPLE_TEXTURE2D(_CameraDepthTexture,sampler_CameraDepthTexture,i.screenPosition.xy / i.screenPosition.w);
+                float4 sampleDepthNormal = SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture,sampler_CameraDepthNormalsTexture,i.screenPosition.xy / i.screenPosition.w);
+	            float depth = DecodeFloatRG(sampleDepth.zw);
+                float3 normal = DecodeNormal(sampleDepth);
+ 
                 //输出深度，从深度法线纹理中获取到的深度亮度值相比直接从深度纹理不够高，*1000以提升亮度
                 depth = depth * 1000;
                 // 水的表面和它背后的物体之间的距离，以单位表示。
                 float depthDifference = depth - i.screenPosition.w;
-                return depthDifference;
+                //return depthDifference;
                 
                 //--2.绘制颜色
                 // 根据深度插值水的颜色。
