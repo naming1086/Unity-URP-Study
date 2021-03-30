@@ -6,8 +6,8 @@
         _BaseColor("BaseColor",Color)=(1,1,1,1)
         _CellWidth("CellWidth",Range(-1,1))=0.5
         _CellColor("CellColor",Color)=(1,1,1,1)
-        _HighLightWidth("HighLightWidth",Range(-1,1))=0.5
-        _HighLightColor("HighLightColor",Color) = (1,1,1,1)
+        _SpecularRange("SpecularRange",Range(-1,1))=0.5
+        _SpecularColor("SpecularColor",Color) = (1,1,1,1)
         _DissolutionTex("DissolutionTex",2D) = "white"{}
         _AlphaCutoff("AlphaCutoff",Range(0,1)) = 0.5
         _DissolutionWidth("DissolutionWidth",float) = 0.2
@@ -36,8 +36,8 @@
         float _CellWidth;
         float4 _CellColor;
 
-        float _HighLightWidth;
-        float4 _HighLightColor;
+        float _SpecularRange;
+        float4 _SpecularColor;
 
         float _AlphaCutoff;
         float _DissolutionWidth;
@@ -62,7 +62,7 @@
         {
             float4 positionCS : SV_POSITION;
             float2 texcoord : TEXCOORD0;
-            float3 viewDir : TEXCOORD1;
+            float3 viewDirWS : TEXCOORD1;
             float3 normalWS : TEXCOORD2;
             float2 texcoord2 : TEXCOORD3;
         };
@@ -79,20 +79,22 @@
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-            #pragma target 3.0
+            //#pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            //#pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            //#pragma target 3.0
 
             v2f vert(a2v i)
             {
                 v2f o;
+                //在齐次裁剪空间中的坐标
                 o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
-                o.normalWS = TransformObjectToWorldNormal(i.normalOS);
+                //在世界空间中的法线
+                o.normalWS = TransformObjectToWorldNormal(i.normalOS.xyz);
+                //得到世界空间的视图方向
+                o.viewDirWS = normalize(_WorldSpaceCameraPos.xyz-TransformObjectToWorld(i.positionOS.xyz));
 
                 o.texcoord = TRANSFORM_TEX(i.texcoord,_MainTex);
                 o.texcoord2 = TRANSFORM_TEX(i.texcoord,_DissolutionTex);
-
-                o.viewDir = normalize(_WorldSpaceCameraPos.xyz-TransformObjectToWorld(i.positionOS.xyz));
                 return o;
             }
 
@@ -102,15 +104,15 @@
                 half LdotN = dot(mainLight.direction,i.normalWS);
                 LdotN = saturate(step(0,LdotN-_CellWidth));                
                 ///
-                half3 halfAngle = normalize(normalize(mainLight.direction)+normalize(i.viewDir));
+                half3 halfAngle = normalize(normalize(mainLight.direction)+normalize(i.viewDirWS));
                 half HdotN = saturate(dot(halfAngle,i.normalWS));
-                HdotN = saturate(ceil(HdotN-_HighLightWidth));
+                HdotN = saturate(ceil(HdotN-_SpecularRange));
                 ///
                 half4 mainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
                 half4 dissolutionTex = SAMPLE_TEXTURE2D(_DissolutionTex,sampler_DissolutionTex,i.texcoord2);
                 ///
                 half4 baseColor = lerp(_CellColor,_BaseColor,LdotN)*mainTex;
-                half4 finalColor= lerp(baseColor,_HighLightColor+mainTex,HdotN);
+                half4 finalColor= lerp(baseColor,_SpecularColor+mainTex,HdotN);
                                 ///
                 half em1 = step(0,dissolutionTex.r - _AlphaCutoff+_DissolutionWidth);
                 half em2 = step(0,dissolutionTex.r - _AlphaCutoff-_DissolutionWidth);
@@ -118,9 +120,12 @@
                 half4 emissions = em*_EmissionsIntensity*_EmissionsColor;
                 ///
                 clip(dissolutionTex.r - _AlphaCutoff);
-                return finalColor+emissions;
+
+                return baseColor;
+                return finalColor;
+                return finalColor+emissions;             
             }
-        ENDHLSL
+            ENDHLSL
         }
     }
 }
