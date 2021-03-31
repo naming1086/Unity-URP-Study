@@ -20,6 +20,7 @@
         Tags 
 		{ 
             "RenderPipeline"="UniversalPipeline"
+			//"RenderType"="Opaque" 
 		}
 
 		HLSLINCLUDE
@@ -52,8 +53,7 @@
             float4 positionCS : SV_POSITION;
             float2 texcoord : TEXCOORD0;
 			float3 normalWS : NORMAL;
-			float3 viewDirWS : TEXCOORD1;
-			float3 positionWS : TEXCOORD2;
+			float3 positionWS : TEXCOORD1;
         };
         ENDHLSL
 
@@ -79,9 +79,9 @@
 
                 o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
                 o.texcoord = TRANSFORM_TEX(i.texcoord,_MainTex);
-                o.normalWS = normalize(TransformObjectToWorldNormal(i.normalOS.xyz));
-                o.positionWS = normalize(TransformObjectToWorld(i.positionOS.xyz));
-				o.viewDirWS = normalize(_WorldSpaceCameraPos.xyz - TransformObjectToWorld(i.positionOS.xyz));
+
+                o.normalWS = TransformObjectToWorldNormal(i.normalOS.xyz);
+                o.positionWS = TransformObjectToWorld(i.positionOS.xyz);
                 return o;
             }
 			
@@ -92,8 +92,8 @@
 				//Light mainLight = GetMainLight();
 				Light mainLight = GetMainLight(TransformWorldToShadowCoord(i.positionWS));
 				float3 WS_L = normalize(mainLight.direction);//光照方向
-				float3 WS_N = i.normalWS;//法线
-				float3 WS_V = i.viewDirWS;//观察方向
+				float3 WS_N = normalize(i.normalWS);//法线
+				float3 WS_V =  normalize(_WorldSpaceCameraPos-i.positionWS);//观察方向
 				float3 WS_H = normalize(WS_V+WS_L);//半程向量
 
 				//漫反射
@@ -108,7 +108,7 @@
 				float4 specular = specularIntensitySmooth * _SpecularColor * mainLight.shadowAttenuation;
 
 				//外描边
-				float4 rimDot = 1 - dot(WS_V,WS_N);				
+				float rimDot = 1 - dot(WS_V,WS_N);				
 				//我们只希望边缘出现在表面的光亮面，
 				//因此，将其乘以NdotL，并提升为平滑融合的能力。 
 				float rimIntensity = rimDot * pow(NdotL,_RimThreshold);
@@ -119,5 +119,6 @@
             }
             ENDHLSL
 		}
+		UsePass "Universal Render Pipeline/Lit/ShadowCaster"
 	}
 }
