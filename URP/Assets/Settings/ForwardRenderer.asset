@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2394707342729043471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890ef212e46654243a283a6800c64d4a, type: 3}
+  m_Name: NewScanPlus
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: e024eee820d6c02409cb777f388f9428, type: 2}
+    Event: 500
+    ColorX: {r: 1, g: 1, b: 1, a: 1}
+    ColorY: {r: 1, g: 1, b: 1, a: 1}
+    ColorZ: {r: 1, g: 1, b: 1, a: 1}
+    ColorEdge: {r: 1, g: 1, b: 1, a: 1}
+    ColorOutline: {r: 1, g: 1, b: 1, a: 1}
+    Width: 0.1
+    Spacing: 1
+    Speed: 1
+    EdgeSample: 1
+    NormalSensitivity: 1
+    DepthSensitivity: 1
+    axis: 2
 --- !u!114 &-2128603971206913279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0008c38a286da4880547af0b5e5ce7, type: 3}
   m_Name: NewDepthNormalsFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,7 +55,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: -2128603971206913279}
-  m_RendererFeatureMap: 01e3b94cf7ad75e2
+  - {fileID: 4612606498015506652}
+  - {fileID: -2394707342729043471}
+  m_RendererFeatureMap: 01e3b94cf7ad75e2dc70dfda2b450340f1a19d075c4ac4de
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -50,3 +80,31 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
+--- !u!114 &4612606498015506652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890ef212e46654243a283a6800c64d4a, type: 3}
+  m_Name: NewScanPlus
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: 65f31c549b848424293a44fcd4bde387, type: 2}
+    Event: 500
+    ColorX: {r: 1, g: 1, b: 1, a: 1}
+    ColorY: {r: 1, g: 1, b: 1, a: 1}
+    ColorZ: {r: 1, g: 1, b: 1, a: 1}
+    ColorEdge: {r: 1, g: 1, b: 1, a: 1}
+    ColorOutline: {r: 1, g: 1, b: 1, a: 1}
+    Width: 0.1
+    Spacing: 1
+    Speed: 1
+    EdgeSample: 1
+    NormalSensitivity: 1
+    DepthSensitivity: 1
+    axis: 0

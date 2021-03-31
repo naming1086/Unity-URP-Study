@@ -46,8 +46,8 @@
 
         TEXTURE2D(_MainTex);
         SAMPLER(sampler_MainTex);
-        TEXTURE2D(_CameraDepthNormalTexture);
-        SAMPLER(sampler_CameraDepthNormalTexture);
+        TEXTURE2D(_CameraDepthNormalsTexture);
+        SAMPLER(sampler_CameraDepthNormalsTexture);
         //TEXTURE2D(_CameraDepthTexture);
         //SAMPLER(sampler_CameraDepthTexture);
         float4x4 Matrix;
@@ -101,7 +101,7 @@
                 int outline = soble(i);
                 //返回轮廓    
                 float4 mainTex = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord);
-                float4 depthNormal = SAMPLE_TEXTURE2D(_CameraDepthNormalTexture,sampler_CameraDepthNormalTexture,i.texcoord);
+                float4 depthNormal = SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture,sampler_CameraDepthNormalsTexture,i.texcoord);
                 float depth01 = depthNormal.z * 1.0+depthNormal.w/255.0;//得到01线性的深度
 
                 float3 WSPos = _WorldSpaceCameraPos + depth01*i.dirction*_ProjectionParams.z;//这样也可以得到世界坐标
@@ -135,7 +135,7 @@
                 uv[3] = i.texcoord+float2(1,1)*_EdgeSample*_MainTex_TexelSize.xy;
                 for(int t = 0;t<4;t++)
                 {
-                    float4 depthNormalTex = SAMPLE_TEXTURE2D(_CameraDepthNormalTexture,sampler_CameraDepthNormalTexture,uv[t]);
+                    float4 depthNormalTex = SAMPLE_TEXTURE2D(_CameraDepthNormalsTexture,sampler_CameraDepthNormalsTexture,uv[t]);
                     normal[t] = depthNormalTex.xy;//得到临时法线
                     depth[t] = depthNormalTex.z*1.0+depthNormalTex.w/255.0;//得到线性深度
 				}
