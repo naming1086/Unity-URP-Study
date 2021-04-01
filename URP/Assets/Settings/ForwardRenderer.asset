@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0008c38a286da4880547af0b5e5ce7, type: 3}
   m_Name: NewDepthNormalsFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99a222d3c1f70e489a06e8375eebc78, type: 3}
   m_Name: NewOutlinePass
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     name: "\u5916\u63CF\u8FB9"
     material: {fileID: 2100000, guid: 7b47a7f2d550fa4469cc0ac586aad50f, type: 2}
