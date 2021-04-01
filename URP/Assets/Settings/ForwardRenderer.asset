@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2394707342729043471
+--- !u!114 &-4494066928020261621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,25 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890ef212e46654243a283a6800c64d4a, type: 3}
-  m_Name: NewScanPlus
+  m_Script: {fileID: 11500000, guid: 3b46ef1ca9f16fa44a1d35e2fe6b65a9, type: 3}
+  m_Name: NewMyBilt
   m_EditorClassIdentifier: 
   m_Active: 0
   setting:
-    material: {fileID: 2100000, guid: e024eee820d6c02409cb777f388f9428, type: 2}
-    Event: 500
-    ColorX: {r: 1, g: 1, b: 1, a: 1}
-    ColorY: {r: 1, g: 1, b: 1, a: 1}
-    ColorZ: {r: 1, g: 1, b: 1, a: 1}
-    ColorEdge: {r: 1, g: 1, b: 1, a: 1}
-    ColorOutline: {r: 1, g: 1, b: 1, a: 1}
-    Width: 0.1
-    Spacing: 1
-    Speed: 1
-    EdgeSample: 1
-    NormalSensitivity: 1
-    DepthSensitivity: 1
-    axis: 2
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: f07cfbcb591b1e44d8ad9dcd9a9c25ea, type: 2}
+    matPassIndex: -1
 --- !u!114 &-2128603971206913279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,9 +44,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: -2128603971206913279}
-  - {fileID: 4612606498015506652}
-  - {fileID: -2394707342729043471}
-  m_RendererFeatureMap: 01e3b94cf7ad75e2dc70dfda2b450340f1a19d075c4ac4de
+  - {fileID: 2226937343391849184}
+  - {fileID: -4494066928020261621}
+  m_RendererFeatureMap: 01e3b94cf7ad75e2e05aec09b7abe71e0b758586f0dda1c1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -80,7 +69,7 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
---- !u!114 &4612606498015506652
+--- !u!114 &2226937343391849184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,22 +78,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890ef212e46654243a283a6800c64d4a, type: 3}
-  m_Name: NewScanPlus
+  m_Script: {fileID: 11500000, guid: f99a222d3c1f70e489a06e8375eebc78, type: 3}
+  m_Name: NewOutlinePass
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   setting:
-    material: {fileID: 2100000, guid: 65f31c549b848424293a44fcd4bde387, type: 2}
-    Event: 500
-    ColorX: {r: 1, g: 1, b: 1, a: 1}
-    ColorY: {r: 1, g: 1, b: 1, a: 1}
-    ColorZ: {r: 1, g: 1, b: 1, a: 1}
-    ColorEdge: {r: 1, g: 1, b: 1, a: 1}
-    ColorOutline: {r: 1, g: 1, b: 1, a: 1}
-    Width: 0.1
-    Spacing: 1
-    Speed: 1
-    EdgeSample: 1
-    NormalSensitivity: 1
-    DepthSensitivity: 1
-    axis: 0
+    name: "\u5916\u63CF\u8FB9"
+    material: {fileID: 2100000, guid: 7b47a7f2d550fa4469cc0ac586aad50f, type: 2}
+    renderPassEvent: 500
+    scale: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    depthThreshold: 1.5
+    depthNormalThreshold: 0.5
+    depthNormalThresholdScale: 7
+    normalThreshold: 0.4
