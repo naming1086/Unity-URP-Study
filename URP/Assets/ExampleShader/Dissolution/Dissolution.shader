@@ -113,7 +113,7 @@
                 ///
                 half4 baseColor = lerp(_CellColor,_BaseColor,LdotN)*mainTex;
                 half4 finalColor= lerp(baseColor,_SpecularColor+mainTex,HdotN);
-                                ///
+                ///
                 half em1 = step(0,dissolutionTex.r - _AlphaCutoff+_DissolutionWidth);
                 half em2 = step(0,dissolutionTex.r - _AlphaCutoff-_DissolutionWidth);
                 half em = em1 - em2;

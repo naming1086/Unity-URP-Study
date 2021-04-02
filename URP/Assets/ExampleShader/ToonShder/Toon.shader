@@ -20,7 +20,6 @@
         Tags 
 		{ 
             "RenderPipeline"="UniversalPipeline"
-			//"RenderType"="Opaque" 
 		}
 
 		HLSLINCLUDE
@@ -62,7 +61,7 @@
 			Tags
 			{
 				"LightMode" = "UniversalForward"
-				"PassFlags" = "OnlyDirectional"
+				"PassFlags" = "OnlyDirectional"//只接收直线光
 			}
 
 			HLSLPROGRAM
@@ -79,7 +78,6 @@
 
                 o.positionCS = TransformObjectToHClip(i.positionOS.xyz);
                 o.texcoord = TRANSFORM_TEX(i.texcoord,_MainTex);
-
                 o.normalWS = TransformObjectToWorldNormal(i.normalOS.xyz);
                 o.positionWS = TransformObjectToWorld(i.positionOS.xyz);
                 return o;
@@ -89,7 +87,6 @@
             {
                 float4 mainTex = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord);
 
-				//Light mainLight = GetMainLight();
 				Light mainLight = GetMainLight(TransformWorldToShadowCoord(i.positionWS));
 				float3 WS_L = normalize(mainLight.direction);//光照方向
 				float3 WS_N = normalize(i.normalWS);//法线
@@ -104,7 +101,7 @@
 				//镜面 高光
 				float NdotH = dot(WS_N,WS_H);
 				float specularIntensity = pow(NdotH * lightIntensity ,_Glossiness * _Glossiness);
-				float specularIntensitySmooth = smoothstep(0.005,0.01,specularIntensity);
+				float specularIntensitySmooth = smoothstep(0.005,0.01,specularIntensity);//005
 				float4 specular = specularIntensitySmooth * _SpecularColor * mainLight.shadowAttenuation;
 
 				//外描边
@@ -119,6 +116,7 @@
             }
             ENDHLSL
 		}
+		//阴影
 		UsePass "Universal Render Pipeline/Lit/ShadowCaster"
 	}
 }

@@ -36,7 +36,6 @@
             float2 texcoord : TEXCOORD;
         };
         ENDHLSL
-		//UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
 
         Pass
         {
