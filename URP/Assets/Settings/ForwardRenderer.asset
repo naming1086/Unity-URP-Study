@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4494066928020261621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b46ef1ca9f16fa44a1d35e2fe6b65a9, type: 3}
-  m_Name: NewMyBilt
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  setting:
-    passEvent: 500
-    myMat: {fileID: 2100000, guid: f07cfbcb591b1e44d8ad9dcd9a9c25ea, type: 2}
-    matPassIndex: -1
---- !u!114 &-2128603971206913279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0008c38a286da4880547af0b5e5ce7, type: 3}
-  m_Name: NewDepthNormalsFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures:
-  - {fileID: -2128603971206913279}
-  - {fileID: 2226937343391849184}
-  - {fileID: -4494066928020261621}
-  m_RendererFeatureMap: 01e3b94cf7ad75e2e05aec09b7abe71e0b758586f0dda1c1
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -76,26 +43,3 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
---- !u!114 &2226937343391849184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99a222d3c1f70e489a06e8375eebc78, type: 3}
-  m_Name: NewOutlinePass
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  setting:
-    name: "\u5916\u63CF\u8FB9"
-    material: {fileID: 2100000, guid: 7b47a7f2d550fa4469cc0ac586aad50f, type: 2}
-    renderPassEvent: 500
-    scale: 1
-    color: {r: 1, g: 1, b: 1, a: 1}
-    depthThreshold: 1.5
-    depthNormalThreshold: 0.5
-    depthNormalThresholdScale: 7
-    normalThreshold: 0.4

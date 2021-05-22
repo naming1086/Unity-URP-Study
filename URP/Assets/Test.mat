@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Test
-  m_Shader: {fileID: 4800000, guid: d4b5b119d296373469d835deac4e5967, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8f7e42ea1f99efd44bed013d4e9d436c, type: 3}
   m_ShaderKeywords: _ADD_LIGHT_ON _CUT_ON _NORMAL_STAGE_WS_N _Z_STAGE_LOCK_Z
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -60,6 +60,7 @@ Material:
     - _AlphaClip: 0
     - _Amount: 100
     - _Blend: 0
+    - _Blur: 1
     - _Brightness: 1
     - _BumpScale: 1
     - _CUT: 0
@@ -67,7 +68,9 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.396
     - _DepthOffset: 0.5
+    - _DepthSensitivity: 1
     - _DstBlend: 0
+    - _EdgeSample: 1
     - _EdgeStrechPrevent: 1
     - _EnvironmentReflections: 1
     - _FrameRate: 20
@@ -75,9 +78,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Instensity: 0.5
     - _Metallic: 0
     - _NORMAL_STAGE: 0
     - _NormalScale: 1
+    - _NormalSensitivity: 1
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -85,23 +90,33 @@ Material:
     - _Saturate: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _Spacing: 1
     - _SpecularHighlights: 1
     - _SpecularRange: 10
+    - _Speed: 1
     - _SpeluarRange: 50
     - _SrcBlend: 1
     - _Surface: 0
+    - _Width: 0.1
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _Z_STAGE: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
     - _BurnColor: {r: 2.5, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorEdge: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorX: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorY: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorZ: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 1, b: 0.9540148, a: 1}
+    - _OutLineColor: {r: 1, g: 1, b: 1, a: 1}
     - _Sheet: {r: 4, g: 2, b: 1, a: 1}
+    - _SoildColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpeluarColor: {r: 1, g: 0.023584902, b: 0.023584902, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &8463999159282120090
 MonoBehaviour:
   m_ObjectHideFlags: 11
