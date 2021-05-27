@@ -1,4 +1,4 @@
-﻿Shader "Custom/2173NRPCelRender"
+﻿Shader "2173NRP/2173NRPCelRender"
 {
 	Properties
 	{
@@ -87,8 +87,11 @@
 				
 				Light myLight = GetMainLight();
 				half3 worldLightDir = normalize(myLight.direction);
+
 				half halfLambert = dot(worldNormal, worldLightDir) * 0.5 + 0.5;//半兰伯特
-				half3 diffuse = halfLambert > _ShadowRange ? _MainColor : _ShadowColor;
+				half ramp = smoothstep(0, _ShadowSmooth, halfLambert - _ShadowRange);
+				half3 diffuse = lerp(_ShadowColor, _MainColor, ramp);
+
 				diffuse *= mainTex;
 				col.rgb = myLight.color * diffuse;
 
