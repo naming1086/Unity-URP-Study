@@ -1,5 +1,125 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8684627109454034865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e7c9477a00dad43bd92335d038ca32, type: 3}
+  m_Name: NewRenderColorAdjust
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    CS: {fileID: 7200000, guid: 7ff760bc431a3de4bbba433767ffb7ea, type: 3}
+    saturete: 1
+    bright: 1
+    constrast: 1
+    Event: 500
+--- !u!114 &-7551782853217067229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ac0cdd70ddac040aa7e5133169f9b1, type: 3}
+  m_Name: NewURPScan
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: 65f31c549b848424293a44fcd4bde387, type: 2}
+    Event: 350
+--- !u!114 &-6461681766805570608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f41676ac830f584a8947a36313cd6ae, type: 3}
+  m_Name: NewURPSelectOutline
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: 7c1f34d9d74faae4eb0e9676e6067fc7, type: 2}
+    Event: 400
+    color: {r: 0, g: 0, b: 1, a: 1}
+    QueueMin: 2000
+    QUeueMax: 2500
+    layer:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    blur: 1
+    passLoop: 1
+    ColorType: 0
+--- !u!114 &-5690044973268255865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fed6bc1507abd489c64a1cdc860b74, type: 3}
+  m_Name: NewURPBrokeBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    name: "\u6563\u666F\u6A21\u7CCA"
+    myMat: {fileID: 2100000, guid: 1d8d7bca49d12fa4798f9613caedf295, type: 2}
+    passEvent: 300
+    downSample: 2
+    loop: 100
+    Radius: 1
+    BlurSmoothness: 0.1
+    NearDis: 5
+    FarDis: 9
+--- !u!114 &-5593070220937547199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c7e01674bafe44f81c22a94498531c, type: 3}
+  m_Name: NewURPDoualKawaseBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: fe3e09333afb50645a5b88af5fcdfcad, type: 2}
+    downSample: 2
+    loop: 2
+    bulr: 0.5
+    passTag: "\u53CC\u91CDKawase\u6A21\u7CCA"
+--- !u!114 &-3420664415044989527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd9eb63b8705ac45a72161e93ee1fad, type: 3}
+  m_Name: NewURPGlitchBlit
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: eec578f964a965942b7e44a8e22e4b47, type: 2}
+    Event: 300
+    instensity: 0.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,21 +132,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: 9058684111672004733}
+  - {fileID: 7876088666231952756}
+  - {fileID: 2978020651395109370}
+  - {fileID: -5593070220937547199}
+  - {fileID: 2622978704342937005}
+  - {fileID: -5690044973268255865}
+  - {fileID: -7551782853217067229}
+  - {fileID: 689463001788957167}
+  - {fileID: -6461681766805570608}
+  - {fileID: -3420664415044989527}
+  - {fileID: -8684627109454034865}
+  m_RendererFeatureMap: 7d50af6034e9b67d74553ca2e97c4d6dfad12e14010e542941b23375446c61b2ad6dc6053cb16624873b59743ee608b1235f1c8d81ad3297efc1677bf2769109d07bef25ab7e53a6a98d6c85d65b87d04fc84336a8017a87
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
-  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
     screenSpaceShadowPS: {fileID: 4800000, guid: 0f854b35a0cf61a429bd5dcfea30eddd,
       type: 3}
     samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
-    tileDepthInfoPS: {fileID: 0}
-    tileDeferredPS: {fileID: 0}
-    stencilDeferredPS: {fileID: 4800000, guid: e9155b26e1bc55942a41e518703fe304, type: 3}
     fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
-    materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
   m_OpaqueLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -41,5 +167,104 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
-  m_RenderingMode: 0
-  m_AccurateGbufferNormals: 0
+--- !u!114 &689463001788957167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890ef212e46654243a283a6800c64d4a, type: 3}
+  m_Name: NewURPScanPlus
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    material: {fileID: 2100000, guid: e024eee820d6c02409cb777f388f9428, type: 2}
+    Event: 350
+    ColorX: {r: 2.9960785, g: 0, b: 0, a: 1}
+    ColorY: {r: 2.9960785, g: 2.8705883, b: 0, a: 1}
+    ColorZ: {r: 0.17254902, g: 0.36078432, b: 4, a: 1}
+    ColorEdge: {r: 0, g: 1.2156863, b: 2, a: 1}
+    ColorOutline: {r: 0.07058824, g: 2, b: 1.9058824, a: 1}
+    Width: 0.05
+    Spacing: 2
+    Speed: 2.7
+    EdgeSample: 1
+    NormalSensitivity: 1
+    DepthSensitivity: 1
+    axis: 0
+--- !u!114 &2622978704342937005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b55d80e672d0d459fbbea04cef1dc4, type: 3}
+  m_Name: NewURPRadiaBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passName: "\u5F84\u5411\u6A21\u7CCA"
+    myMat: {fileID: 2100000, guid: 8ea1268d4e9f57b4d8d614837629fec9, type: 2}
+    passEvent: 500
+    x: 0.5
+    y: 0.5
+    loop: 5
+    blur: 3
+    downSample: 2
+    instensity: 0.5
+--- !u!114 &2978020651395109370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d17e27129390e46b2c77500787c923, type: 3}
+  m_Name: NewURPKawaseBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 268098dbb35c70d4b81803d2eee1e9af, type: 2}
+    downSample: 2
+    loop: 2
+    bulr: 0.5
+    passTag: "Kawase\u6A21\u7CCA"
+--- !u!114 &7876088666231952756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b46ef1ca9f16fa44a1d35e2fe6b65a9, type: 3}
+  m_Name: NewURPPost
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 70f57cce70123124587a92ef1a75c5fe, type: 2}
+    matPassIndex: -1
+--- !u!114 &9058684111672004733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0008c38a286da4880547af0b5e5ce7, type: 3}
+  m_Name: NewDepthNormalsFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
