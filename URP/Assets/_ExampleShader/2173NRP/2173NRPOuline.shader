@@ -25,7 +25,6 @@
 		{
 			float4 positionOS : POSITION;
 			float3 normal : NORMAL;
-			float2 texcoord : TEXCOORD0;
 			float4 vertColor : COLOR;
 			float4 tangent : TANGENT;
 		};

@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EYES
-  m_Shader: {fileID: 4800000, guid: 4a9ee4d6eb8df62469d7226c4e4a897a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6940dd8451887684da660d801d944bac, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -135,4 +135,3 @@ Material:
     - _ShadowMapColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []

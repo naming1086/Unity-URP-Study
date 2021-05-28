@@ -175,6 +175,11 @@ Shader "SimpleURPToonLitExample(With Outline)"
         // -vertex position are pushed out a bit base on normal direction
         // -also color is tinted
         // -Cull Front instead of Cull Back because Cull Front is a must for all extra pass outline method
+        // [＃1 外描边Pass]
+         //与上述“ ForwardLit”传递相同，但
+         // 顶点位置位置根据法线方向被推出一点
+         // 且还对颜色进行了着色
+         // Cull Front而不是Cull Back，因为对于所有额外的传递轮廓方法，都必须使用Cull Front
         Pass 
         {
             Name "Outline"
@@ -223,6 +228,7 @@ Shader "SimpleURPToonLitExample(With Outline)"
         }
  
         // ShadowCaster pass. Used for rendering URP's shadowmaps
+        // 阴影Pass，用于渲染URP的阴影贴图。
         Pass
         {
             Name "ShadowCaster"
@@ -253,6 +259,8 @@ Shader "SimpleURPToonLitExample(With Outline)"
 
         // DepthOnly pass. Used for rendering URP's offscreen depth prepass (you can search DepthOnlyPass.cs in URP package)
         // For example, when depth texture is on, we need to perform this offscreen depth prepass for this toon shader. 
+        // 仅深度传递。 用于渲染URP的屏幕外深度预通过（您可以在URP包中搜索DepthOnlyPass.cs）
+        // 例如，当启用深度纹理时，我们需要为此卡通着色器执行此屏幕外的深度预通过。
         Pass
         {
             Name "DepthOnly"
