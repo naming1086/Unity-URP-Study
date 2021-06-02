@@ -6,9 +6,9 @@ Shader "URP/ColorAdjustment"
         _MainTex ("MainTex (RGB)", 2D) = "white" {}
         _BaseColor("Base Color",Color) = (1, 1, 1, 1)
         //Hue的值范围为0-359. 其他两个为0-1 ,这里我们设置到3，因为乘以3后 都不一定能到超过.
-        _Hue ("Hue", Range(0,359)) = 0 // 色相
-        _Saturation ("Saturation", Range(0,1)) = 0.5 //饱和
-        _Value ("Value", Range(0,1)) = 0.5 //明度
+        _Hue ("Hue", float) = 0 // 色相
+        _Saturation ("Saturation", float) = 1 //饱和
+        _Value ("Value", float) = 1 //明度
     }
     SubShader 
     {
@@ -137,13 +137,13 @@ Shader "URP/ColorAdjustment"
                 //half gray = original.r * 0.3 + original.g * 0.59 + original.b * 0.11;
 
                 float3 colorHSV;    
-                colorHSV.xyz = RGBConvertToHSV(original.rgb);   //转换为HSV
+                //colorHSV.xyz = RGBConvertToHSV(original.rgb);   //转换为HSV
 
-                colorHSV.x = _Hue;//色相
-                colorHSV.y = _Saturation;//饱和度
-                colorHSV.z = _Value + colorHSV.z;//明度
+                //colorHSV.x = _Hue; //调整偏移Hue值
+                //colorHSV.y = _Saturation;
+                //colorHSV.z *= _Value;
 
-                original.rgb = HSVConvertToRGB(colorHSV);   //将调整后的HSV，转换为RGB颜色
+                original.rgb = HSVConvertToRGB(original.rgb);   //将调整后的HSV，转换为RGB颜色
 
                 return original;
             }
