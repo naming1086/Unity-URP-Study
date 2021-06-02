@@ -144,8 +144,8 @@ MonoBehaviour:
   - {fileID: -6461681766805570608}
   - {fileID: -3420664415044989527}
   - {fileID: -8684627109454034865}
-  - {fileID: 3030682733907475159}
-  m_RendererFeatureMap: 7d50af6034e9b67d74553ca2e97c4d6dfad12e14010e542941b23375446c61b2ad6dc6053cb16624873b59743ee608b1235f1c8d81ad3297efc1677bf2769109d07bef25ab7e53a6a98d6c85d65b87d04fc84336a8017a87d7fa76a5e3250f2a
+  - {fileID: 59141398302317485}
+  m_RendererFeatureMap: 7d50af6034e9b67d74553ca2e97c4d6dfad12e14010e542941b23375446c61b2ad6dc6053cb16624873b59743ee608b1235f1c8d81ad3297efc1677bf2769109d07bef25ab7e53a6a98d6c85d65b87d04fc84336a8017a87ad5b54d5c91cd200
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -168,6 +168,46 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
+--- !u!114 &59141398302317485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: NewRenderObjects
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    passTag: NewRenderObjects
+    Event: 300
+    filterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 256
+      PassNames:
+      - PlanarShadow
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPassIndex: 0
+    overrideDepthState: 0
+    depthCompareFunction: 4
+    enableWrite: 1
+    stencilSettings:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
 --- !u!114 &689463001788957167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,26 +279,6 @@ MonoBehaviour:
     loop: 2
     bulr: 0.5
     passTag: "Kawase\u6A21\u7CCA"
---- !u!114 &3030682733907475159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e496314474dc29d4b968cd466bdcc308, type: 3}
-  m_Name: NewPlanarShadow
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  setting:
-    layer:
-      serializedVersion: 2
-      m_Bits: 256
-    queueMin: 1000
-    queueMax: 5000
-    material: {fileID: 2100000, guid: 12ae594026ceb1d4480bd34d20aa7125, type: 2}
 --- !u!114 &7876088666231952756
 MonoBehaviour:
   m_ObjectHideFlags: 0
